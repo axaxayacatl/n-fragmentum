@@ -2,226 +2,964 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>— Fragmentum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<title>n — fragmentum</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+    --black: #020102;
+    --red: #ff174f;
+    --hot: #ff3972;
+    --pink: #ff9eb9;
+    --white: #fff4f7;
+    --dim: rgba(255,244,247,.46);
+    --line: rgba(255,244,247,.14);
 }
 
-body{
-    font-family:Arial,sans-serif;
-    background:#111;
+* {
+    box-sizing: border-box;
 }
 
-.section{
-    position:relative;
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+html {
+    background: var(--black);
 }
 
-.black{
-    background:#020202;
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            ellipse 80% 35% at 50% 0%,
+            rgba(255,20,75,.25),
+            transparent 72%
+        ),
+        #020102;
+    color: var(--white);
+    font-family: "IBM Plex Mono", monospace;
+    overflow-x: hidden;
 }
 
-.grey{
-    background:#ececec;
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .10;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.035) 0,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px,
+            transparent 5px
+        );
 }
 
-/* Lamp Glow */
 
-.lamp{
-    position:absolute;
-    width:360px;
-    height:360px;
-    border-radius:50%;
-    background:radial-gradient(circle,
-        rgba(255,255,255,.55) 0%,
-        rgba(255,255,255,.22) 28%,
-        rgba(255,255,255,.08) 55%,
-        transparent 80%);
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    filter:blur(45px);
+/* ABSTRACT 3D HEADER */
+
+.abstract-header {
+    position: relative;
+    width: 100%;
+    height: 410px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at 50% 50%,
+            rgba(255,20,75,.32),
+            transparent 58%
+        ),
+        #030203;
 }
 
-.grey .lamp{
-    background:radial-gradient(circle,
-        rgba(255,255,255,.95),
-        rgba(255,255,255,.55),
-        rgba(255,255,255,.15),
-        transparent);
+.abstract-header::before {
+    content: "";
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    left: 50%;
+    top: 50%;
+    transform:
+        translate(-50%,-50%)
+        rotate(-18deg)
+        skewX(-8deg);
+    border-radius: 48% 52% 42% 58%;
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #ffb5c9 0%,
+            #ff527e 16%,
+            #ff174f 38%,
+            #98002d 68%,
+            #26000d 100%
+        );
+    filter: blur(13px);
+    box-shadow:
+        0 0 50px rgba(255,20,75,.7),
+        0 0 130px rgba(255,0,60,.45);
+    animation: objectFloat 9s ease-in-out infinite alternate;
 }
 
-/* Ghost */
-
-.ghost{
-    position:relative;
-    width:260px;
-    height:360px;
-    filter:blur(16px);
+.abstract-header::after {
+    content: "";
+    position: absolute;
+    width: 190px;
+    height: 330px;
+    left: 52%;
+    top: 50%;
+    transform:
+        translate(-50%,-50%)
+        rotate(24deg);
+    border-radius: 50%;
+    background:
+        linear-gradient(
+            130deg,
+            rgba(255,230,237,.65),
+            rgba(255,60,110,.18) 30%,
+            rgba(100,0,35,.55) 65%,
+            rgba(255,10,65,.2)
+        );
+    filter: blur(22px);
+    mix-blend-mode: screen;
+    opacity: .75;
+    animation: objectSecond 12s ease-in-out infinite alternate;
 }
 
-.petal{
-    position:absolute;
-    border-radius:50%;
-    mix-blend-mode:screen;
+@keyframes objectFloat {
+
+    0% {
+        transform:
+            translate(-50%,-50%)
+            rotate(-18deg)
+            skewX(-8deg)
+            scale(.9);
+    }
+
+    100% {
+        transform:
+            translate(-47%,-54%)
+            rotate(13deg)
+            skewX(7deg)
+            scale(1.12);
+    }
 }
 
-.red .petal{
-    background:radial-gradient(circle at 35% 35%,
-        #ffcccc,
-        #ff5d73 30%,
-        #ff1640 60%,
-        transparent 85%);
+@keyframes objectSecond {
+
+    0% {
+        transform:
+            translate(-50%,-50%)
+            rotate(24deg)
+            scale(.8,1.05);
+    }
+
+    100% {
+        transform:
+            translate(-45%,-53%)
+            rotate(-17deg)
+            scale(1.1,.9);
+    }
 }
 
-.blue .petal{
-    background:radial-gradient(circle at 35% 35%,
-        #ffffff,
-        #d8f4ff 30%,
-        #9fdcff 60%,
-        transparent 85%);
+.abstract-ring {
+    position: absolute;
+    border: 1px solid rgba(255,180,200,.28);
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: .7;
 }
 
-.white .petal{
-    background:radial-gradient(circle at 35% 35%,
-        #ffffff,
-        #ffffff 40%,
-        rgba(255,255,255,.55) 70%,
-        transparent);
+.ring-one {
+    width: 250px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform:
+        translate(-50%,-50%)
+        rotate(-28deg);
 }
 
-/* Petal Layout */
-
-.p1{
-    width:120px;
-    height:170px;
-    left:70px;
-    top:0;
+.ring-two {
+    width: 170px;
+    height: 280px;
+    left: 51%;
+    top: 49%;
+    transform:
+        translate(-50%,-50%)
+        rotate(31deg);
 }
 
-.p2{
-    width:130px;
-    height:180px;
-    left:20px;
-    top:70px;
+.ring-three {
+    width: 320px;
+    height: 150px;
+    left: 49%;
+    top: 51%;
+    transform:
+        translate(-50%,-50%)
+        rotate(8deg);
 }
 
-.p3{
-    width:130px;
-    height:180px;
-    right:20px;
-    top:70px;
+.abstract-noise {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at 20% 25%,
+            rgba(255,255,255,.12),
+            transparent 1%
+        ),
+        radial-gradient(
+            circle at 75% 65%,
+            rgba(255,255,255,.08),
+            transparent 1%
+        );
+    opacity: .6;
+    filter: blur(2px);
 }
 
-.p4{
-    width:160px;
-    height:200px;
-    left:50px;
-    top:120px;
+.header-content {
+    position: absolute;
+    z-index: 20;
+    inset: 0;
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.center{
-    position:absolute;
-    width:90px;
-    height:90px;
-    left:85px;
-    top:110px;
-    border-radius:50%;
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.red .center{
-    background:radial-gradient(circle,
-        #ffd5d5,
-        #ff6078,
-        transparent 80%);
+.brand {
+    font-size: 9px;
 }
 
-.blue .center{
-    background:radial-gradient(circle,
-        #ffffff,
-        #bde9ff,
-        transparent 80%);
+.brand span {
+    color: var(--red);
 }
 
-.white .center{
-    background:radial-gradient(circle,
-        #ffffff,
-        rgba(255,255,255,.7),
-        transparent 80%);
+.header-meta {
+    color: var(--dim);
+    text-align: right;
 }
 
-.stem{
-    position:absolute;
-    width:42px;
-    height:180px;
-    left:109px;
-    bottom:-10px;
-    border-radius:100px;
+.header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
-.red .stem{
-    background:linear-gradient(
-        rgba(255,95,120,.95),
-        rgba(255,20,70,.25),
-        transparent);
+.header-title {
+    font-size: 24px;
+    line-height: .9;
+    letter-spacing: -.075em;
+    text-shadow: 0 0 30px rgba(255,20,75,.4);
 }
 
-.blue .stem{
-    background:linear-gradient(
-        rgba(180,230,255,.95),
-        rgba(110,190,255,.25),
-        transparent);
+.header-description {
+    margin-top: 12px;
+    color: var(--dim);
+    font-size: 6px;
+    line-height: 1.7;
+    text-transform: uppercase;
 }
 
-.white .stem{
-    background:linear-gradient(
-        rgba(255,255,255,.95),
-        rgba(255,255,255,.25),
-        transparent);
+.header-index {
+    writing-mode: vertical-rl;
+    color: var(--pink);
+    font-size: 7px;
+    letter-spacing: .12em;
 }
 
-.caption{
-    position:absolute;
-    bottom:40px;
-    color:#aaa;
-    letter-spacing:3px;
-    font-size:14px;
-    text-transform:uppercase;
+
+/* PAGE */
+
+.page {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 0 12px 100px;
 }
 
-.grey .caption{
-    color:#777;
+.micro {
+    font-size: 7px;
+    line-height: 1.5;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.feed {
+    padding-top: 40px;
+}
+
+
+/* EPISODE */
+
+.episode {
+    position: relative;
+    margin-bottom: 120px;
+}
+
+.episode-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.episode-number {
+    color: var(--pink);
+}
+
+.episode-type {
+    color: var(--dim);
+}
+
+
+/* LANDSCAPE VIDEO */
+
+.video-stage {
+    position: relative;
+    width: 100%;
+    height: 390px;
+}
+
+.video-glow {
+    position: absolute;
+    width: 300px;
+    height: 190px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,20,75,.6),
+            transparent 68%
+        );
+    filter: blur(65px);
+}
+
+.micro-frame {
+    position: absolute;
+    width: 76%;
+    max-width: 390px;
+    aspect-ratio: 16 / 9;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) rotate(-2deg);
+    overflow: hidden;
+    background: #080305;
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.8),
+        0 15px 50px rgba(255,0,60,.16);
+    animation: videoFloat 8s ease-in-out infinite alternate;
+}
+
+.micro-frame.second {
+    transform: translate(-50%,-50%) rotate(2deg);
+    animation-delay: -2.5s;
+}
+
+.micro-frame::before {
+    content: "";
+    position: absolute;
+    z-index: 8;
+    inset: 0;
+    border: 1px solid rgba(255,255,255,.18);
+    pointer-events: none;
+}
+
+.micro-frame::after {
+    content: "";
+    position: absolute;
+    z-index: 7;
+    inset: 0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.05),
+            transparent 25%,
+            transparent 70%,
+            rgba(0,0,0,.3)
+        );
+    pointer-events: none;
+}
+
+.micro-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter:
+        saturate(1.4)
+        contrast(1.08);
+}
+
+@keyframes videoFloat {
+
+    from {
+        margin-top: -8px;
+    }
+
+    to {
+        margin-top: 9px;
+    }
+}
+
+.frame-top,
+.frame-bottom {
+    position: absolute;
+    z-index: 10;
+    left: 7px;
+    right: 7px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 6px;
+    mix-blend-mode: screen;
+}
+
+.frame-top {
+    top: 7px;
+}
+
+.frame-bottom {
+    bottom: 7px;
+}
+
+
+/* SIDE TEXT */
+
+.side-label {
+    position: absolute;
+    color: var(--dim);
+    font-size: 6px;
+    line-height: 1.6;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.side-left {
+    left: 0;
+    bottom: 40px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.side-right {
+    right: 0;
+    top: 45px;
+    writing-mode: vertical-rl;
+}
+
+
+/* INFO */
+
+.episode-info {
+    padding: 0 8px;
+    margin-top: 18px;
+}
+
+.episode-title {
+    font-size: 15px;
+    line-height: 1.08;
+    letter-spacing: -.045em;
+}
+
+.episode-description {
+    margin-top: 8px;
+    color: var(--dim);
+    font-size: 6px;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 18px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.stat {
+    min-width: 0;
+    padding: 8px 5px;
+    border-right: 1px solid var(--line);
+}
+
+.stat:last-child {
+    border-right: 0;
+}
+
+.stat-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--dim);
+    font-size: 6px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 7px;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    margin-bottom: 115px;
+    background: var(--line);
+}
+
+.endless {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.endless-glow {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    background: var(--red);
+    filter: blur(45px);
+    opacity: .45;
+}
+
+.endless-title {
+    color: var(--pink);
+    font-size: 8px;
+    letter-spacing: .12em;
+}
+
+.endless-copy {
+    margin-top: 8px;
+    color: var(--dim);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 400px) {
+
+    .abstract-header {
+        height: 390px;
+    }
+
+    .header-title {
+        font-size: 22px;
+    }
+
+    .page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .video-stage {
+        height: 330px;
+    }
+
+    .micro-frame {
+        width: 80%;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat {
+        border-bottom: 1px solid var(--line);
+    }
+
+    .stat:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .stat:last-child {
+        grid-column: span 2;
+        border-right: 0;
+    }
+}
+
+@media (max-width: 330px) {
+
+    .abstract-header {
+        height: 350px;
+    }
+
+    .video-stage {
+        height: 300px;
+    }
+
+    .micro-frame {
+        width: 84%;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<!-- RED -->
+<header class="abstract-header">
 
-<section class="section black">
-    <div class="lamp"></div>
+    <div class="abstract-noise"></div>
 
-    <div class="ghost red">
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
+    <div class="abstract-ring ring-one"></div>
+    <div class="abstract-ring ring-two"></div>
+    <div class="abstract-ring ring-three"></div>
+
+    <div class="header-content">
+
+        <div class="header-top">
+
+            <div class="brand">
+                n <span>—</span> fragmentum
+            </div>
+
+            <div class="header-meta micro">
+                moving image archive<br>
+                live / 002
+            </div>
+
+        </div>
+
+        <div class="header-bottom">
+
+            <div>
+
+                <div class="header-title">
+                    N — FRAGMENTUM
+                </div>
+
+                <div class="header-description">
+                    ambient transmissions<br>
+                    moving image / sound<br>
+                    fragments without sequence
+                </div>
+
+            </div>
+
+            <div class="header-index">
+                ANIMA / INK / SIGNAL
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="caption">coming soon</div>
+</header>
+
+
+<div class="page">
+
+<main class="feed">
+
+
+<!-- EPISODE 001 -->
+
+<article class="episode">
+
+    <div class="episode-head micro">
+
+        <div class="episode-number">
+            transmission / 001
+        </div>
+
+        <div class="episode-type">
+            0°
+        </div>
+
+    </div>
+
+
+    <div class="video-stage">
+
+        <div class="video-glow"></div>
+
+        <div class="micro-frame">
+
+            <video
+                id="video001"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+            >
+                <source
+                    src="https://raw.githubusercontent.com/axayacatl/n-fragmentum/main/podcasts/N%20%E2%80%94%20Fragmentum%20Anima%200%C2%B0.mp4"
+                    type="video/mp4"
+                >
+            </video>
+
+            <div class="frame-top">
+                <span>N / ANIMA</span>
+                <span>001</span>
+            </div>
+
+            <div class="frame-bottom">
+                <span>LIVE IMAGE</span>
+                <span>0°</span>
+            </div>
+
+        </div>
+
+        <div class="side-label side-left">
+            fragment / anima / temporal object
+        </div>
+
+        <div class="side-label side-right">
+            audio / image / memory
+        </div>
+
+    </div>
+
+
+    <div class="episode-info">
+
+        <div class="episode-title">
+            N — Fragmentum Anima 0°
+        </div>
+
+        <div class="episode-description">
+            first transmission / audio visual fragment
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <span class="stat-label">duration</span>
+            <span class="stat-value" id="duration001">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">resolution</span>
+            <span class="stat-value" id="resolution001">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">file size</span>
+            <span class="stat-value">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">format</span>
+            <span class="stat-value">MP4</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">audio</span>
+            <span class="stat-value">present</span>
+        </div>
+
+    </div>
+
+</article>
+
+
+<div class="divider"></div>
+
+
+<!-- EPISODE 002 -->
+
+<article class="episode">
+
+    <div class="episode-head micro">
+
+        <div class="episode-number">
+            transmission / 002
+        </div>
+
+        <div class="episode-type">
+            f(x)
+        </div>
+
+    </div>
+
+
+    <div class="video-stage">
+
+        <div
+            class="video-glow"
+            style="opacity:.14;"
+        ></div>
+
+        <div class="micro-frame second">
+
+            <video
+                id="video002"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+            >
+                <source
+                    src="https://raw.githubusercontent.com/axayacatl/n-fragmentum/main/podcasts/NI%20%E2%80%94%20Fragmentum%20INk%20f(x).mp4"
+                    type="video/mp4"
+                >
+            </video>
+
+            <div class="frame-top">
+                <span>NI / INK</span>
+                <span>002</span>
+            </div>
+
+            <div class="frame-bottom">
+                <span>LIVE IMAGE</span>
+                <span>f(x)</span>
+            </div>
+
+        </div>
+
+        <div class="side-label side-left">
+            ink / function / recursion
+        </div>
+
+        <div class="side-label side-right">
+            distortion / signal / image
+        </div>
+
+    </div>
+
+
+    <div class="episode-info">
+
+        <div class="episode-title">
+            NI — Fragmentum INk f(x)
+        </div>
+
+        <div class="episode-description">
+            second transmission / ink / function / image
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <span class="stat-label">duration</span>
+            <span class="stat-value" id="duration002">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">resolution</span>
+            <span class="stat-value" id="resolution002">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">file size</span>
+            <span class="stat-value">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">format</span>
+            <span class="stat-value">MP4</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">audio</span>
+            <span class="stat-value">present</span>
+        </div>
+
+    </div>
+
+</article>
+
+
+<div class="divider"></div>
+
+
+<section class="endless">
+
+    <div class="endless-glow"></div>
+
+    <div class="endless-title">
+        more fragments
+    </div>
+
+    <div class="endless-copy micro">
+        the archive has no final frame<br>
+        scroll / receive / continue
+    </div>
+
 </section>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+function loadStats(videoId, durationId, resolutionId) {
+
+    const video = document.getElementById(videoId);
+
+    video.addEventListener("loadedmetadata", function() {
+
+        const duration =
+            document.getElementById(durationId);
+
+        const resolution =
+            document.getElementById(resolutionId);
+
+        if (Number.isFinite(video.duration)) {
+
+            const totalSeconds =
+                Math.floor(video.duration);
+
+            const minutes =
+                Math.floor(totalSeconds / 60);
+
+            const seconds =
+                String(totalSeconds % 60)
+                .padStart(2, "0");
+
+            duration.textContent =
+                `${minutes}:${seconds}`;
+        }
+
+        if (video.videoWidth && video.videoHeight) {
+
+            resolution.textContent =
+                `${video.videoWidth}×${video.videoHeight}`;
+        }
+
+    });
+
+}
+
+loadStats(
+    "video001",
+    "duration001",
+    "resolution001"
+);
+
+loadStats(
+    "video002",
+    "duration002",
+    "resolution002"
+);
+
+</script>
 
 </body>
 </html>
