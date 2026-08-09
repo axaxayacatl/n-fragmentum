@@ -130,7 +130,6 @@ body::after {
 }
 
 @keyframes objectFloat {
-
     0% {
         transform:
             translate(-50%,-50%)
@@ -149,7 +148,6 @@ body::after {
 }
 
 @keyframes objectSecond {
-
     0% {
         transform:
             translate(-50%,-50%)
@@ -403,7 +401,6 @@ body::after {
 }
 
 @keyframes videoFloat {
-
     from {
         margin-top: -8px;
     }
@@ -667,114 +664,6 @@ body::after {
 <main class="feed">
 
 
-<!-- EPISODE 001 -->
-
-<article class="episode">
-
-    <div class="episode-head micro">
-
-        <div class="episode-number">
-            transmission / 001
-        </div>
-
-        <div class="episode-type">
-            0°
-        </div>
-
-    </div>
-
-
-    <div class="video-stage">
-
-        <div class="video-glow"></div>
-
-        <div class="micro-frame">
-
-            <video
-                id="video001"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-            >
-                <source
-                    src="https://raw.githubusercontent.com/axayacatl/n-fragmentum/main/podcasts/N%20%E2%80%94%20Fragmentum%20Anima%200%C2%B0.mp4"
-                    type="video/mp4"
-                >
-            </video>
-
-            <div class="frame-top">
-                <span>N / ANIMA</span>
-                <span>001</span>
-            </div>
-
-            <div class="frame-bottom">
-                <span>LIVE IMAGE</span>
-                <span>0°</span>
-            </div>
-
-        </div>
-
-        <div class="side-label side-left">
-            fragment / anima / temporal object
-        </div>
-
-        <div class="side-label side-right">
-            audio / image / memory
-        </div>
-
-    </div>
-
-
-    <div class="episode-info">
-
-        <div class="episode-title">
-            N — Fragmentum Anima 0°
-        </div>
-
-        <div class="episode-description">
-            first transmission / audio visual fragment
-        </div>
-
-    </div>
-
-
-    <div class="stats">
-
-        <div class="stat">
-            <span class="stat-label">duration</span>
-            <span class="stat-value" id="duration001">—</span>
-        </div>
-
-        <div class="stat">
-            <span class="stat-label">resolution</span>
-            <span class="stat-value" id="resolution001">—</span>
-        </div>
-
-        <div class="stat">
-            <span class="stat-label">file size</span>
-            <span class="stat-value">—</span>
-        </div>
-
-        <div class="stat">
-            <span class="stat-label">format</span>
-            <span class="stat-value">MP4</span>
-        </div>
-
-        <div class="stat">
-            <span class="stat-label">audio</span>
-            <span class="stat-value">present</span>
-        </div>
-
-    </div>
-
-</article>
-
-
-<div class="divider"></div>
-
-
 <!-- EPISODE 002 -->
 
 <article class="episode">
@@ -794,10 +683,7 @@ body::after {
 
     <div class="video-stage">
 
-        <div
-            class="video-glow"
-            style="opacity:.14;"
-        ></div>
+        <div class="video-glow"></div>
 
         <div class="micro-frame second">
 
@@ -886,6 +772,117 @@ body::after {
 <div class="divider"></div>
 
 
+<!-- EPISODE 001 -->
+
+<article class="episode">
+
+    <div class="episode-head micro">
+
+        <div class="episode-number">
+            transmission / 001
+        </div>
+
+        <div class="episode-type">
+            0°
+        </div>
+
+    </div>
+
+
+    <div class="video-stage">
+
+        <div
+            class="video-glow"
+            style="opacity:.14;"
+        ></div>
+
+        <div class="micro-frame">
+
+            <video
+                id="video001"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+            >
+                <source
+                    src="https://raw.githubusercontent.com/axayacatl/n-fragmentum/main/podcasts/N%20%E2%80%94%20Fragmentum%20Anima%200%C2%B0.mp4"
+                    type="video/mp4"
+                >
+            </video>
+
+            <div class="frame-top">
+                <span>N / ANIMA</span>
+                <span>001</span>
+            </div>
+
+            <div class="frame-bottom">
+                <span>LIVE IMAGE</span>
+                <span>0°</span>
+            </div>
+
+        </div>
+
+        <div class="side-label side-left">
+            fragment / anima / temporal object
+        </div>
+
+        <div class="side-label side-right">
+            audio / image / memory
+        </div>
+
+    </div>
+
+
+    <div class="episode-info">
+
+        <div class="episode-title">
+            N — Fragmentum Anima 0°
+        </div>
+
+        <div class="episode-description">
+            first transmission / audio visual fragment
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <span class="stat-label">duration</span>
+            <span class="stat-value" id="duration001">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">resolution</span>
+            <span class="stat-value" id="resolution001">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">file size</span>
+            <span class="stat-value">—</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">format</span>
+            <span class="stat-value">MP4</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">audio</span>
+            <span class="stat-value">present</span>
+        </div>
+
+    </div>
+
+</article>
+
+
+<div class="divider"></div>
+
+
 <section class="endless">
 
     <div class="endless-glow"></div>
@@ -948,15 +945,15 @@ function loadStats(videoId, durationId, resolutionId) {
 }
 
 loadStats(
-    "video001",
-    "duration001",
-    "resolution001"
-);
-
-loadStats(
     "video002",
     "duration002",
     "resolution002"
+);
+
+loadStats(
+    "video001",
+    "duration001",
+    "resolution001"
 );
 
 </script>
